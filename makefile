@@ -26,10 +26,10 @@ $(OUTPUTNAME) : $(OBJ)
 clean:
 	rm -rf $(ODIR)/*
 	rm -rf .vs
-	rm -f bin/*.pdb 
-	rm -f bin/*.iobj
-	rm -f bin/*.ipdb
-	rm -f bin/*.ilk
+	rm -f bin/*.pdb 2> /dev/null
+	rm -f bin/*.iobj 2> /dev/null
+	rm -f bin/*.ipdb 2> /dev/null
+	rm -f bin/*.ilk 2> /dev/null
 	
 install:
 	rm -f /usr/local/bin/$(OUTPUTNAME)

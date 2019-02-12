@@ -31,7 +31,14 @@ int roll_dice(int num_rolls, IDice& dice) {
 }
 
 int free_bacon(int score) {
+    // SP19 rules
+    return std::min((score / 10 % 10), score % 10) + 1;
+
+    /*
+    // FA18 rules
     return std::max(2 * (score / 10 % 10) - score % 10, 1);
+    */
+
     /*
     // SP18 rules
     int max_digit = 0;
@@ -59,7 +66,18 @@ int take_turn(int num_rolls, int score1, IDice& dice){
 
 int is_swap(int score0, int score1) {
     if (!enable_swine_swap) return false;
+    // SP19 rules
+    for (; score0 && score1; score0 /= 10, score1 /= 10) {
+        if (score0 % 10 == score1 % 10) {
+            return 1;
+        }
+    }
+    return 0;
+    
+    /*
+    // FA18 rules
     return abs(score0 / 10 % 10 - score0 % 10) == abs(score1 / 10 % 10 - score1 % 10);
+    */
     /*
     // SP18 rules
     if (score0 <= 1 || score1 <= 1) return false;

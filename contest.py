@@ -7,6 +7,7 @@ FILE_NAME = 'hog_contest.py'
 OUTPUT_PATH = 'results.txt'
 N_THREADS = 4
 
+# option to include 'staff solution' on leaderboard
 STAFF_SOLN_PATH = ""#"staff_soln_dp.strat"
 
 PY_EXE = sys.executable
@@ -17,7 +18,7 @@ BACON_PATH = join(PROJ_DIR, 'bin/bacon')
 
 if len(sys.argv) <= 1:
     print ("Welcome to the Hog Contest simulation tool (c) Alex Yu (sxyu@berkeley.edu) 2018.\n")
-    print ("Usage: python[3] contest.py [submission_root_directories] [] [-o output_name = results.txt] [-n submission_filename = hog_contest.py] [-t num_threads = 4]\n")
+    print ("Usage: python[3] contest.py [submission_root_directories] [-o output_name = results.txt] [-n submission_filename = hog_contest.py] [-t num_threads = 4]\n")
     print ("Example: python3 contest.py -n hog_contest.py -o results.txt ~/hog_contest/")
     sys.exit(0)
     
