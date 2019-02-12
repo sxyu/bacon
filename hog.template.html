@@ -100,6 +100,15 @@
             #winrate-ctrl-bar{
                 text-align:right;
             }
+            #past-semester-links{
+                position:absolute;
+                top:10px;
+                right:10px;
+                font-size: 10px;
+            }
+            #past-semester-links > a{
+                margin-left: 10px;
+            }
         </style>
     </head>
     <body>
@@ -110,7 +119,12 @@
             As of 
             {%TIMESTAMP%}
             </p>
-            <p id="leaderboard-click-tip"><strong>New Feature:</strong> Click any team to see win rates</p>
+            <p id="leaderboard-click-tip"><strong>Tip:</strong> Click any team to see win rates</p>
+            <div id="past-semester-links">
+                    <strong>Old Stuff:</strong>
+                    <a href="hog-fa18.html">Fall 2018</a>
+                    <a href="winners.html">Past Winners</a>
+            </div>
             <ol>
             {%RANKINGS%}
             </ol>
