@@ -3,15 +3,21 @@
 import sys, os, subprocess, shutil, random, string, shutil
 from os.path import join
 
-token = ""
+token = "amGC6IVPCONBLfo5M6A5E1vIZcQiNS"
 if len(sys.argv) > 1:
     token = sys.argv[1]
 
 # FILL THIS OUT
 EMAIL = "oski@berkeley.edu"
-OK_ASSIGNMENT = "cal/cs61a/fa18/proj01contest"
+OK_ASSIGNMENT = "cal/cs61a/sp19/proj01contest"
+
+DEPLOY_SSH = False
+# if copy local
+DEPLOY_PATH = "/home/hogcon/public_html"
+
+# if using ssh
 SSH_USER, SSH_PASS, SSH_PATH = "oski", "oskipass", "ssh.berkeley.edu:public_html/hog.html"
-SCP, SCP_PW = "pscp", True
+SCP, SCP_PW = "scp", False
 # END
     
 PY_EXE = sys.executable
@@ -69,7 +75,11 @@ with urllib.request.urlopen(OK_SUBM_API_URL + token) as response:
    print("{} submissions downloaded from Okpy.org".format(cnt))
    execute(PY_EXE + " " + CONTESTPY_PATH + ' ' + dirname)
    execute(PY_EXE + " " + HOGHTML_PATH + ' ' + TEMPLATE_FILE + ' results.txt ' + OUT_FILE)
-   if SSH_PASS:
-        execute(SCP + (" -pw \"" + SSH_PASS + "\"" if SCP_PW else "") + " \"" + OUT_FILE + "\" " + SSH_USER + "@" + SSH_PATH)
+   if DEPLOY_SSH:
+       if SSH_PASS:
+           execute(SCP + (" -pw \"" + SSH_PASS + "\"" if SCP_PW else "") + " \"" + OUT_FILE + "\" " + SSH_USER + "@" + SSH_PATH)
+   else:
+       print("Deploying to", DEPLOY_PATH)
+       shutil.copy(OUT_FILE, DEPLOY_PATH)
    
 shutil.rmtree(dirname, True) # clean up
