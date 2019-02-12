@@ -41,6 +41,11 @@ Enter the directory `bacon`:
 cd bacon
 ```
 
+Create the object directory:
+```sh
+mkdir obj
+```
+
 Compile the source:
 ```sh
 make
